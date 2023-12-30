@@ -8,7 +8,7 @@ import * as z from "zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@web/components/shadcn/ui/form";
 import { Input } from "@web/components/shadcn/ui/input";
 import { Button } from "@web/components/shadcn/ui/button";
-
+import useLineLiffInit from "@web/hooks/useLineLiffInit";
 
 const PFFormField = ({ label, name, type }: { label: string, name: string, type?: string}) => (
   <FormField
@@ -43,6 +43,7 @@ const onSubmit = (form: z.infer<typeof formSchema>) => {
   console.log(form);
 }
 export default function CreateExercise() {
+  const { liff, accessToken } = useLineLiffInit()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,6 +58,7 @@ export default function CreateExercise() {
   return (
     <div>
       <div>
+        accessToken: {accessToken}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="mb-24">
             <FormField
