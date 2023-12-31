@@ -9,6 +9,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@web/components/shadcn/ui/input";
 import { Button } from "@web/components/shadcn/ui/button";
 import useLineLiffInit from "@web/hooks/useLineLiffInit";
+import getUserWithLiffToken from "@web/apis/getUserWithLiffToken";
+import { useEffect } from "react";
 
 const PFFormField = ({ label, name, type }: { label: string, name: string, type?: string}) => (
   <FormField
@@ -44,6 +46,11 @@ const onSubmit = (form: z.infer<typeof formSchema>) => {
 }
 export default function CreateExercise() {
   const { liff, accessToken } = useLineLiffInit()
+  useEffect(() => {
+    if(accessToken) {
+      const user = getUserWithLiffToken('line', accessToken)
+    }
+  }, [accessToken])
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

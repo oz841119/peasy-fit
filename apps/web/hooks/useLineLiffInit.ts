@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import liff from '@line/liff';
-
 export default function useLineLiffInit() {
   const [ accessToken, setAccessToken ] = useState<null | string>(null)
+  console.log(process.env.NEXT_PUBLIC_BASE_API_URL);
   useEffect(() => {
     liff.init({
       liffId: process.env.NEXT_PUBLIC_LINE_LIFF_ID!,
@@ -10,18 +10,12 @@ export default function useLineLiffInit() {
     })
     .then(() => {
       const accessToken = liff.getAccessToken()
-      console.log(accessToken);
-      // https://peasy-fit-web.vercel.app/line/create-exercise
-      // if(!accessToken) {
-      //   liff.login({redirectUri: location.href})
-      //   return
-      // }
+      if(!accessToken) return liff.login()
       setAccessToken(accessToken)
     })
   }, [])
   return {
     liff,
     accessToken,
-
   }
 }
