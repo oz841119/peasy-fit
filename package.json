@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "pnpm run --parallel dev",
     "dev:server": "pnpm run --parallel dev:server",
-    "dev:web": "pnpm run --parallel dev:web"
+    "dev:web": "pnpm run --parallel dev:web",
+    "start": "node apps/server/dist/main"
   },
   "keywords": [],
   "author": "",
