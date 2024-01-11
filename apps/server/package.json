@@ -1,5 +1,5 @@
 {
-  "main": "src/main.ts",
+  "main": "dist/main.js",
   "name": "server",
   "version": "0.0.1",
   "description": "",
