@@ -1,5 +1,4 @@
 {
-  "main": "dist/main.js",
   "name": "server",
   "version": "0.0.1",
   "description": "",
@@ -9,7 +8,7 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "node dist/main",
+    "start": "nest start",
     "start:dev": "nest start --watch",
     "dev": "nest start --watch",
     "dev:server": "nest start --watch",
