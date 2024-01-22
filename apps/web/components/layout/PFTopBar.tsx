@@ -1,4 +1,4 @@
-export default function PFHeader() {
+export default function PFTopBar() {
   return (
     <div className="h-8 flex items-center px-2">
       <h1 className="font-bold text-sm">

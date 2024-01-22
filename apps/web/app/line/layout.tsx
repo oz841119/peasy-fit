@@ -1,5 +1,4 @@
 import PFContainer from "@web/components/PFContainer"
-import PFHeader from "@web/components/PFHeader"
 
 import type { Metadata } from 'next'
 
@@ -14,7 +13,6 @@ export default function LineLayout({
 }) {
   return (
     <div>
-      <PFHeader></PFHeader>
       <PFContainer>{children}</PFContainer>
     </div>
   )
