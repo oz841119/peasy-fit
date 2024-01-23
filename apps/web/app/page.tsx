@@ -4,7 +4,7 @@ import { useUserStore } from "@web/store"
 import Link from "next/link"
 import { useShallow } from 'zustand/react/shallow'
 
-export const UserName = () => {
+const UserName = () => {
   const { name } = useUserStore(useShallow(({ name }) => ({ name })))
   const id = useUserStore.getState().id
   console.log('UserName: re-render');
@@ -13,7 +13,7 @@ export const UserName = () => {
   )
 }
 
-export const UserId = () => {
+const UserId = () => {
   const { setId } = useUserStore(({ id, setId }) => ({ id, setId }))
   const id = useUserStore.getState().id
   console.log('UserId: re-render')
