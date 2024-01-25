@@ -1,10 +1,11 @@
 'use client'
 import PFContainer from '@web/components/PFContainer'
 import PFTag from '@web/components/PFTag'
+import PFPagination from '@web/components/layout/PFPagination'
 import PFTable from '@web/components/layout/PFTable'
 import { useEffect, useState } from 'react'
-
 export default function Record() {
+  const [page, setPage] = useState(1)
   const [table, setTable] = useState<Training[]>([])
   const cols: Array<{ field: keyof Training, label: string }> = [
     { field: 'id', label: 'ID' },
@@ -17,27 +18,21 @@ export default function Record() {
   useEffect(() => {
     import('../../mock/trainings.json')
       .then((res) => {
-        console.log(res.default);
-        
-        setTable(res.default)
+        setTable(res.default.map((row, index) => ({...row, id: `${index}`})))
       })
   }, [])
   return (
     <main>
       <PFContainer>
+        <PFPagination total={table.length} page={page} onPageChange={(_page) => setPage(_page)}></PFPagination>
         <PFTable
           data={table}
           cols={cols}
           slots={{
             tags: (value: Array<TrainingTag>) => (
               <div className='flex gap-1'>
-                {
-                  value.map(({ label, id }) => (
-                    <div className='inline-block p-1 text-xs bg-white text-black rounded' key={ id }>{ label }</div>
-                  ))
-                }
-              </div>
-            )
+                { value.map(({ label, id }) => <PFTag key={id}>{label}</PFTag>) }
+              </div>)
           }}
         />
       </PFContainer>

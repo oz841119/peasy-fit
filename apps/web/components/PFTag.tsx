@@ -1,7 +1,5 @@
-import { PropsWithChildren } from "react";
-
-export default function PFTag({children}: PropsWithChildren) {
+export default function PFTag({ children }: { children: React.ReactNode }) {
   return (
-    <div className="inline-block">{ children }</div>
+    <div className='inline-block p-1 text-xs bg-white text-black rounded'>{ children }</div>
   )
 }
